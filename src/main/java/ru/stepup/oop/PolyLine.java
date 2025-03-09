@@ -28,8 +28,9 @@ public class PolyLine {
         }
     }
 
-    //если тут оставить List<Point> points то будет ошибка, которую так и не понял как иначе решить: 'PolyLine(List<Line>)' clashes with 'PolyLine(List<Point>)'; both methods have same erasure
+
     private PolyLine(ArrayList<Point> points) {
+        //если тут оставить List<Point> points то будет ошибка, которую так и не понял как иначе решить: 'PolyLine(List<Line>)' clashes with 'PolyLine(List<Point>)'; both methods have same erasure
         if (points.size() > 1) {
             Line tempLine;
             for (int i = 0; i < points.size() - 1; ) {
