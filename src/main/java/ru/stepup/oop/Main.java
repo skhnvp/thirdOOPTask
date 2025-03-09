@@ -31,9 +31,14 @@ public class Main {
         PolyLine pl = new PolyLine(p1,p2,p3,p4);
         System.out.println(pl);
 
+//        Line l1 = new Line(p1,p2);
+//        Line l2 = new Line(p2,p3);
+//        Line l3 = new Line(p3,p4);
+//        System.out.println(l1.getLength() + l2.getLength() + l3.getLength());
+
         System.out.println("Длина ломаной линии: " + pl.getLength());
         System.out.println("Массив PolyLine состоящий из Точек: " + pl.getPoints());
-        //System.out.println("Массив PolyLine состоящий из Линий: " + pl.getLines());
+        System.out.println("Массив PolyLine состоящий из Линий: " + pl.getLines());
 
     }
 }
