@@ -4,6 +4,9 @@ public class Line {
     private Point p1;
     private Point p2;
 
+    public Line() {
+    }
+
     public Line(Point p1, Point p2) {
         this.p1 = p1;
         this.p2 = p2;
@@ -41,5 +44,18 @@ public class Line {
     public void setP2(int x, int y) {
         this.p2.setX(x);
         this.p2.setY(y);
+    }
+
+    public void setPoint1(Point p) {
+        this.p1 = p;
+    }
+
+    public void setPoint2(Point p) {
+        this.p2 = p;
+    }
+
+    public void setNull() {
+        this.p1 = null;
+        this.p2 = null;
     }
 }

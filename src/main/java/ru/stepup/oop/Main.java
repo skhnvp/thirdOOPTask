@@ -21,6 +21,9 @@ package ru.stepup.oop;
 Подсказка: текстовое представление объекта лучше реализовывать в переопределенном методе toString()
 */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Point p1 = new Point(1,5);
@@ -28,17 +31,49 @@ public class Main {
         Point p3 = new Point(5,3);
         Point p4 = new Point(8,9);
 
-        PolyLine pl = new PolyLine(p1,p2,p3,p4);
-        System.out.println(pl);
+        System.out.println("===Varargs==="); //Передаем в PolyLine список точек через параметр переменной длины
 
-//        Line l1 = new Line(p1,p2);
-//        Line l2 = new Line(p2,p3);
-//        Line l3 = new Line(p3,p4);
-//        System.out.println(l1.getLength() + l2.getLength() + l3.getLength());
+        PolyLine pl1 = PolyLine.ofVarargs(p1,p2,p3,p4);
+        System.out.println("Задана кривая линия: " + pl1);
 
-        System.out.println("Длина ломаной линии: " + pl.getLength());
-        System.out.println("Массив PolyLine состоящий из Точек: " + pl.getPoints());
-        System.out.println("Массив PolyLine состоящий из Линий: " + pl.getLines());
+        Line l1 = new Line(p1,p2);
+        Line l2 = new Line(p2,p3);
+        Line l3 = new Line(p3,p4);
 
+        System.out.println("Длина ломаной линии, полученная через Line: " + (l1.getLength() + l2.getLength() + l3.getLength()));
+        System.out.println("Длина ломаной линии, полученная через getLength: " + pl1.getLength());
+
+        System.out.println("Массив PolyLine состоящий из Точек: " + pl1.getLines());
+
+        p2.setX(12);
+        p2.setY(8);
+
+        System.out.println("Массив PolyLine состоящий из Точек: " + pl1.getLines());
+        System.out.println("Длина ломаной линии, полученная через getLength: " + pl1.getLength());
+
+        System.out.println("\n===Array Lines==="); //Передаем в PolyLine список точек через массив Line
+        List arrOfLines = new ArrayList<Line>();
+
+        arrOfLines.add(new Line(p1,p2));
+        arrOfLines.add(new Line(p2,p3));
+        arrOfLines.add(new Line(p3,p4));
+
+        PolyLine pl2 = PolyLine.ofArrayLines(arrOfLines);
+
+        System.out.println("Задана кривая линия: " + pl2);
+        System.out.println("Длина ломаной линии, полученная через getLength: " + pl2.getLength());
+
+        System.out.println("\n===Array Points==="); //Передаем в PolyLine список точек через массив Point
+        ArrayList arrOfPoints = new ArrayList<Point>();
+
+        arrOfPoints.add(p1);
+        arrOfPoints.add(p2);
+        arrOfPoints.add(p3);
+        arrOfPoints.add(p4);
+
+        PolyLine pl3 = PolyLine.ofArrayPoints(arrOfPoints);
+
+        System.out.println("Задана кривая линия: " + pl3);
+        System.out.println("Длина ломаной линии, полученная через getLength: " + pl3.getLength());
     }
 }
