@@ -8,54 +8,47 @@ public class PolyLine {
     private List<Line> polyLine = new ArrayList<>();
 
     private PolyLine() {
-    }
 
-    private PolyLine(Point... polyLines) {
-        if (polyLines.length > 1) {
-            Line tempLine;
-            for (int i = 0; i < polyLines.length - 1; ) {
-                tempLine = new Line();
-                tempLine.setPoint1(polyLines[i]);
-                tempLine.setPoint2(polyLines[++i]);
-                polyLine.add(tempLine);
-            }
-        }
-    }
-
-    private PolyLine(List<Line> lines) {
-        for (Line line : lines) {
-            this.polyLine.add(line);
-        }
-    }
-
-
-    private PolyLine(ArrayList<Point> points) {
-        //если тут оставить List<Point> points то будет ошибка, которую так и не понял как иначе решить: 'PolyLine(List<Line>)' clashes with 'PolyLine(List<Point>)'; both methods have same erasure
-        if (points.size() > 1) {
-            Line tempLine;
-            for (int i = 0; i < points.size() - 1; ) {
-                tempLine = new Line();
-                tempLine.setPoint1(points.get(i));
-                tempLine.setPoint2(points.get(++i));
-                polyLine.add(tempLine);
-            }
-        }
     }
 
     public static PolyLine ofVarargs(Point... points) {
-        return new PolyLine(points);
+        PolyLine pl = new PolyLine();
+
+        if (points.length > 1) {
+            Line tempLine;
+            for (int i = 0; i < points.length - 1; ) {
+                tempLine = new Line();
+                tempLine.setPoint1(points[i]);
+                tempLine.setPoint2(points[++i]);
+                pl.polyLine.add(tempLine);
+            }
+        }
+
+        return pl;
     }
 
     public static PolyLine ofArrayLines(List<Line> lines) {
-        return new PolyLine(lines);
+        PolyLine pl = new PolyLine();
+
+        pl.polyLine.addAll(lines);
+        return pl;
     }
 
-    public static PolyLine ofArrayPoints(ArrayList<Point> points) {
-        return new PolyLine(points);
+    public static PolyLine ofArrayPoints(List<Point> points) {
+        PolyLine pl = new PolyLine();
+
+        if (points.size() > 1) {
+            for (int i = 0; i < points.size() - 1; i++) {
+                Line tempLine = new Line();
+                tempLine.setPoint1(points.get(i));
+                tempLine.setPoint2(points.get(i + 1));
+                pl.polyLine.add(tempLine);
+            }
+        }
+        return pl;
     }
 
-
-    public List getLines() {
+    public List<Line> getLines() {
         return this.polyLine;
     }
 
