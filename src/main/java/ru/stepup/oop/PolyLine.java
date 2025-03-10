@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PolyLine {
-    private List polyLine = new ArrayList<Line>();
+    private List<Line> polyLine = new ArrayList<>();
 
     private PolyLine() {
     }
